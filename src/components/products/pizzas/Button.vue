@@ -1,23 +1,25 @@
 <template>
-  <button
-    class="product-pizza__button"
+  <el-button
     v-if="prepareItem.sizeId"
-    @click="addItemToCart"
-  >В корзину за {{ costProduct }} руб</button>
+    type="danger"
+    class="product-pizza__button"
+    @click="addItemToCart">
+    <i class="el-icon-circle-plus-outline"></i> В корзину за {{ cost }} руб
+  </el-button>
 </template>
 
 <script>
 import Vue from 'vue'
 
 export default Vue.extend({
-  name: 'ProductButton',
+  name: 'PizzaButton',
   props: {
     productId: Number,
     prepareItem: Object
   },
   methods: {
     addItemToCart () {
-      const item = this.itemsCartToType.find(value => {
+      const item = this.itemsCart.find(value => {
         return value.productId === this.productId &&
         value.sizeId === this.prepareItem.sizeId &&
         value.dough === this.prepareItem.dough &&
@@ -25,9 +27,9 @@ export default Vue.extend({
       })
 
       if (item) {
-        this.$store.dispatch('updateItemToCart', {
+        this.$store.dispatch('cart/updateAmountItem', {
           id: item.id,
-          amount: this.prepareItem.amount
+          amount: this.prepareItem.amount + 1
         })
       } else {
         const cartItem = JSON.parse(JSON.stringify({
@@ -39,21 +41,21 @@ export default Vue.extend({
           dough: this.prepareItem.dough,
           topings: this.prepareItem.topings
         }))
-        this.$store.dispatch('addItemToCart', cartItem)
+        this.$store.dispatch('cart/addItem', cartItem)
       }
     }
   },
   computed: {
-    itemsCartToType () {
-      return this.$store.getters.getItemsCartToType('pizzas')
+    itemsCart () {
+      return this.$store.getters['cart/itemsByType']('pizzas')
     },
-    topingsProduct () {
-      return this.$store.getters.getPizzaTopings(this.prepareItem.topings)
+    topingsItem () {
+      return this.$store.getters['pizzas/topingsById'](this.prepareItem.topings)
     },
-    costProduct () {
-      const size = this.$store.getters.getPizzaSize(this.prepareItem.sizeId)
+    cost () {
+      const size = this.$store.getters['pizzas/sizeById'](this.prepareItem.sizeId)
 
-      const topingsCost = this.topingsProduct.reduce((acc, value) => {
+      const topingsCost = this.topingsItem.reduce((acc, value) => {
         return acc + value.cost
       }, 0)
       return (size.cost + topingsCost) * this.prepareItem.amount

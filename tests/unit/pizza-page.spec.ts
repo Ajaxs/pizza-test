@@ -1,14 +1,16 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex'
-import ProductPizza from '@/components/products/pizzas/ProductPizza.vue'
-import ProductToping from '@/components/products/pizzas/ProductToping.vue'
-import ProductSize from '@/components/products/pizzas/ProductSize.vue'
-import ProductDough from '@/components/products/pizzas/ProductDough.vue'
+import ElementUI from 'element-ui'
+import Page from '@/components/products/pizzas/Page.vue'
+import ProductToping from '@/components/products/pizzas/Toping.vue'
+import ProductSize from '@/components/products/pizzas/Size.vue'
+import ProductDough from '@/components/products/pizzas/Dough.vue'
 
 const localVue = createLocalVue()
 localVue.use(Vuex)
+localVue.use(ElementUI)
 
-describe('Component ProductPizza.vue', () => {
+describe('Component pizzas/Page.vue', () => {
 
   let wrapper: any
   let getters
@@ -22,7 +24,7 @@ describe('Component ProductPizza.vue', () => {
 
   beforeEach(() => {
     getters = {
-      getPizzaProduct: () => () => {
+      'pizzas/itemById': () => () => {
         return {
           id: 1,
           title: "Пепперони",
@@ -32,6 +34,15 @@ describe('Component ProductPizza.vue', () => {
           likes: 10,
           topings: [ 1, 4, 7 ]
         }
+      },
+      'pizzas/varintBySizeAndDough': () => () => {
+        return {
+          id: 1,
+          size_id: 1,
+          dough: "standart",
+          image: "https://localhost/pizzas/1_standart_sm.jpeg",
+          weight: 410
+        }
       }
     }
 
@@ -39,7 +50,7 @@ describe('Component ProductPizza.vue', () => {
       getters
     })
 
-    wrapper = shallowMount(ProductPizza, {
+    wrapper = shallowMount(Page, {
       store,
       localVue,
       mocks: {
@@ -49,7 +60,7 @@ describe('Component ProductPizza.vue', () => {
   })
 
   it('render', () => {
-    expect(wrapper.is(ProductPizza)).toBeTruthy()
+    expect(wrapper.is(Page)).toBeTruthy()
   })
 
   it('show data init', () => {
@@ -80,7 +91,7 @@ describe('Component ProductPizza.vue', () => {
   */
 
   afterEach(() => {
-    wrapper = null
+    //wrapper = null
   })
 
 })

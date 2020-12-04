@@ -35,23 +35,30 @@ export interface IPizzasToping {
   cost: number,
 }
 
-export interface IPizzas {
+export interface IPizzasDough {
+  id: number,
+  title: string,
+  dough: string
+}
+
+export interface IPizza {
   items: Partial<Array<IPizzasItem>>,
   sizes: Partial<Array<IPizzasSize>>,
   variants: Partial<Array<IPizzasVariant>>,
-  topings: Partial<Array<IPizzasToping>>
+  topings: Partial<Array<IPizzasToping>>,
+  doughs: Partial<Array<IPizzasDough>>
 }
 
 /* Drinks */
 
-export interface IDrinksItems {
+export interface IDrinksItem {
   id: number,
   title: string,
   description: string,
   image: string
 }
 
-export interface IDrinksSizes {
+export interface IDrinksSize {
   id: number,
   drink_id: number,
   volume: number,
@@ -60,15 +67,9 @@ export interface IDrinksSizes {
 }
 
 export interface IDrinks {
-  items?: Array<IDrinksItems>,
-  sizes?: Array<IDrinksSizes>
+  items?: Array<IDrinksItem>,
+  sizes?: Array<IDrinksSize>
 }
-
-export interface ProductState {
-  pizzas: IPizzas,
-  drinks: IDrinks
-}
-
 
 export interface ICartItem {
   type: string,
@@ -84,5 +85,5 @@ export interface CartState {
   items: Array<ICartItem>,
   cost: number,
   discount: number,
-  promocod: string | null
+  promocod: string
 }

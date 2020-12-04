@@ -1,11 +1,13 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex'
-import ProductDough from '@/components/products/pizzas/ProductDough.vue'
+import ElementUI from 'element-ui'
+import ProductDough from '@/components/products/pizzas/Dough.vue'
 
 const localVue = createLocalVue()
 localVue.use(Vuex)
+localVue.use(ElementUI)
 
-describe('Component ProductDough.vue', () => {
+describe('Component pizzas/Dough.vue', () => {
 
   let wrapper: any
   let getters
@@ -25,7 +27,7 @@ describe('Component ProductDough.vue', () => {
 
   beforeEach(() => {
     getters = {
-      getPizzaDoughsAll: () => doughs
+      'pizzas/doughs': () => doughs
     }
 
     store = new Vuex.Store({
@@ -47,7 +49,7 @@ describe('Component ProductDough.vue', () => {
   })
 
   it('count radio buttons', () => {
-    const labels = wrapper.findAll('label')
+    const labels = wrapper.findAll('.label')
     expect(labels.length).toBe(doughs.length)
   })
 

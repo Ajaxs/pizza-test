@@ -1,11 +1,11 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex'
-import CartAmount from '@/components/app/CartAmount.vue'
+import CartAmount from '@/components/cart/Amount.vue'
 
 const localVue = createLocalVue()
 localVue.use(Vuex)
 
-describe('Component CartTable.vue', () => {
+describe('Component components/cart/Amount.vue', () => {
   let wrapper: any
   let actions: any
   let store: any
@@ -14,7 +14,7 @@ describe('Component CartTable.vue', () => {
 
   beforeEach(() => {
     actions = {
-      updateAmountItemToCart: jest.fn()
+      'cart/updateAmountItem': jest.fn()
     }
     store = new Vuex.Store({
       actions
@@ -43,7 +43,7 @@ describe('Component CartTable.vue', () => {
     expect(wrapper.find('.num').text()).toMatch(amount.toString())
     const minus = wrapper.find('.minus')
     minus.trigger('click')
-    expect(actions.updateAmountItemToCart).toHaveBeenCalled()
+    expect(actions['cart/updateAmountItem']).toHaveBeenCalled()
 
     amount--
     await wrapper.setProps({ amount: amount })
@@ -56,7 +56,7 @@ describe('Component CartTable.vue', () => {
     expect(wrapper.find('.num').text()).toMatch(amount.toString())
     const plus = wrapper.find('.plus')
     plus.trigger('click')
-    expect(actions.updateAmountItemToCart).toHaveBeenCalled()
+    expect(actions['cart/updateAmountItem']).toHaveBeenCalled()
 
     amount++
     await wrapper.setProps({ amount: amount })

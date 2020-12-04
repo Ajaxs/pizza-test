@@ -4,7 +4,6 @@
       v-for="section in sections"
       :key="section.key"
       :section="section"
-      :products="products(section.key)"
     />
   </main>
 </template>
@@ -18,14 +17,9 @@ export default Vue.extend({
   data () {
     return {
       sections: [
-        { key: 'pizzas', title: 'Пицца' },
-        { key: 'drinks', title: 'Напитки' }
+        { key: 'pizzas', title: 'Пицца' }
+        /* { key: 'drinks', title: 'Напитки' } */
       ]
-    }
-  },
-  methods: {
-    products (key: string): Array<object> {
-      return this.$store.getters.getProductsType(key)
     }
   },
   components: {

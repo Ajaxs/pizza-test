@@ -7,33 +7,31 @@
     </div>
     <nav class="menu menu_align_left">
       <ul class="menu__list">
-        <li class="menu__item">
-          <router-link class="menu__link" to="/" exact>Главная</router-link>
-        </li>
-        <li class="menu__item">
-          <router-link class="menu__link" to="/sales">Скидки</router-link>
+        <li class="menu__item" v-for="link in links" :key="link.url">
+          <router-link class="menu__link" :to="link.url" exact>{{ link.title }}</router-link>
         </li>
       </ul>
     </nav>
-    <nav class="cart cart_align_right">
-      <ul class="cart__list">
-        <li class="cart__item">
-          <router-link class="cart__link" to="/cart">Корзина {{ totalCost }} руб</router-link>
-        </li>
-      </ul>
-    </nav>
+    <cart-button />
   </div>
 </template>
 
 <script>
 import Vue from 'vue'
+import CartButton from './CartButton.vue'
 
 export default Vue.extend({
   name: 'Navbar',
-  computed: {
-    totalCost () {
-      return this.$store.getters.getCost - this.$store.getters.getDiscount
+  data () {
+    return {
+      links: [
+        { url: '/', title: 'Главная' },
+        { url: '/sales', title: 'Скидки' }
+      ]
     }
+  },
+  components: {
+    CartButton
   }
 })
 </script>

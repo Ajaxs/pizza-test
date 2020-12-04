@@ -1,11 +1,13 @@
-import { shallowMount, createLocalVue } from '@vue/test-utils'
+import { mount, createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex'
-import ProductButton from '@/components/products/pizzas/ProductButton.vue'
+import ElementUI from 'element-ui'
+import ProductButton from '@/components/products/pizzas/Button.vue'
 
 const localVue = createLocalVue()
 localVue.use(Vuex)
+localVue.use(ElementUI)
 
-describe('Component ProductButton.vue', () => {
+describe('Component pizzas/Button.vue', () => {
   let wrapper: any
   let getters
   let actions: any
@@ -57,14 +59,14 @@ describe('Component ProductButton.vue', () => {
 
   beforeEach(() => {
     actions = {
-      updateItemToCart: jest.fn(),
-      addItemToCart: jest.fn(),
+      'cart/updateAmountItem': jest.fn(),
+      'cart/addItem': jest.fn(),
     }
 
     getters = {
-      getItemsCartToType: () => () => cart,
-      getPizzaTopings: () => () => topings,
-      getPizzaSize: () => () => size
+      'cart/itemsByType': () => () => cart,
+      'pizzas/topingsById': () => () => topings,
+      'pizzas/sizeById': () => () => size
     }
 
     store = new Vuex.Store({
@@ -72,7 +74,7 @@ describe('Component ProductButton.vue', () => {
       getters
     })
 
-    wrapper = shallowMount(ProductButton, {
+    wrapper = mount(ProductButton, {
       propsData: {
         productId: 4,
         prepareItem: {
@@ -98,7 +100,7 @@ describe('Component ProductButton.vue', () => {
   it('update item to cart', () => {
     const button = wrapper.find('.product-pizza__button')
     button.trigger('click')
-    expect(actions.updateItemToCart).toHaveBeenCalled()
+    expect(actions['cart/updateAmountItem']).toHaveBeenCalled()
   })
 
   it('add item to cart', async () => {
@@ -107,7 +109,7 @@ describe('Component ProductButton.vue', () => {
       productId: 2
     })
     button.trigger('click')
-    expect(actions.addItemToCart).toHaveBeenCalled()
+    expect(actions['cart/addItem']).toHaveBeenCalled()
   })
 
 })

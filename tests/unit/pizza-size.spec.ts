@@ -1,11 +1,13 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex'
-import ProductSize from '@/components/products/pizzas/ProductSize.vue'
+import ElementUI from 'element-ui'
+import ProductSize from '@/components/products/pizzas/Size.vue'
 
 const localVue = createLocalVue()
 localVue.use(Vuex)
+localVue.use(ElementUI)
 
-describe('Component ProductSize.vue', () => {
+describe('Component pizzas/Size.vue', () => {
   let wrapper: any
   let getters
   let store
@@ -37,7 +39,7 @@ describe('Component ProductSize.vue', () => {
   beforeEach(() => {
 
     getters = {
-      getPizzaSizes: () => () => sizes
+      'pizzas/sizesByProductId': () => () => sizes
     }
 
     store = new Vuex.Store({
@@ -45,6 +47,9 @@ describe('Component ProductSize.vue', () => {
     })
 
     wrapper = shallowMount(ProductSize, {
+      propsData: {
+        productId: 1
+      },
       store,
       localVue
     })
@@ -59,7 +64,7 @@ describe('Component ProductSize.vue', () => {
   })
 
   it('count radio buttons', () => {
-    const labels = wrapper.findAll('label')
+    const labels = wrapper.findAll('.label')
     expect(labels.length).toBe(sizes.length)
   })
 

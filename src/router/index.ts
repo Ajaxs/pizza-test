@@ -16,16 +16,9 @@ const routes: Array<RouteConfig> = [
     component: () => import('@/views/Sales.vue')
   },
   {
-    path: '/products',
-    name: 'Product',
-    component: () => import('@/views/Product.vue'),
-    children: [
-      {
-        path: 'pizzas/:id',
-        name: 'ProductPizza',
-        component: () => import('@/components/products/pizzas/ProductPizza.vue')
-      }
-    ]
+    path: '/products/pizzas/:id',
+    name: 'PizzaPage',
+    component: () => import('@/components/products/pizzas/Page.vue')
   },
   {
     path: '/cart',

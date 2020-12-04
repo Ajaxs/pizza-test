@@ -1,6 +1,8 @@
 <template>
-  <div class="home">
-    Sales
+  <div class="main-column">
+    <div class="home">
+      Sales
+    </div>
   </div>
 </template>
 

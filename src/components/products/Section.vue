@@ -21,8 +21,12 @@ export default {
     Item
   },
   props: {
-    section: Object,
-    products: Array
+    section: Object
+  },
+  computed: {
+    products () {
+      return this.$store.getters[this.section.key + '/items']
+    }
   }
 }
 </script>
