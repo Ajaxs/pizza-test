@@ -4,7 +4,7 @@
       <div class="product__image">
         <div class="product__label" v-if="product.new">Новинка</div>
         <div class="product__likes" v-if="product.likes">&#10084; {{ product.likes }}</div>
-        <img :src="product.image" @click="showProduct(type, product.id)" :alt="product.title">
+        <img :src="product.image" @click="showProduct(product.id)" :alt="product.title">
       </div>
       <div class="product__title">{{ product.title }}</div>
       <div class="product__description" v-if="product.description">{{ product.description }}</div>

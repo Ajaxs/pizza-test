@@ -25,7 +25,7 @@
           <total />
         </tbody>
       </table>
-      <el-button type="danger">Оформить заказ</el-button>
+      <order />
     </div>
     <div class="no-items" v-else>
       Нет товаров в корзине
@@ -38,6 +38,7 @@ import Vue from 'vue'
 import { mapGetters } from 'vuex'
 import Amount from '@/components/cart/Amount.vue'
 import Total from '@/components/cart/Total.vue'
+import Order from '@/components/cart/Order.vue'
 
 export default Vue.extend({
   name: 'CartTable',
@@ -95,7 +96,8 @@ export default Vue.extend({
   },
   components: {
     Amount,
-    Total
+    Total,
+    Order
   }
 })
 </script>

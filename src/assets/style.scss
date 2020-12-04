@@ -118,9 +118,6 @@ body {
   box-shadow: 0 0 5px #999;
 }
 
-.all-products {
-}
-
 .products {
   margin-bottom: 40px;
 
@@ -320,6 +317,18 @@ body {
       width: 80px;
       margin: 0 auto;
     }
+  }
+}
+
+.page__sales {
+  ul {
+    list-style: none;
+    font-size: 18px;
+    padding-left: 0;
+  }
+
+  li {
+    margin-bottom: 20px;
   }
 }
 

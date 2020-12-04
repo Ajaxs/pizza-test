@@ -20,10 +20,9 @@ const mutations = {
 
 // actions
 const actions = {
-  async init ({ commit, dispatch }) {
+  async init ({ commit }) {
     const result = await axios.get('/api.php')
     commit('init', result.data)
-    dispatch('cart/updateCost')
   }
 }
 

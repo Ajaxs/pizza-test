@@ -83,7 +83,6 @@ export interface ICartItem {
 
 export interface CartState {
   items: Array<ICartItem>,
-  cost: number,
   discount: number,
   promocod: string
 }

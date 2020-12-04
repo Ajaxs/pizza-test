@@ -5,7 +5,7 @@ import SocketIO from 'socket.io-client'
 const soketConnection = SocketIO('http://localhost:3030')
 
 export default new VueSocketIO({
-  debug: true,
+  debug: process.env !== 'production',
   connection: soketConnection,
   vuex: {
     store,

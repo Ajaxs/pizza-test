@@ -7,8 +7,7 @@
     <td colspan="2" class="discount" v-if="discount > 0">
       {{ cost }} руб - {{ discount }} руб
     </td>
-    <td class="cost-total">= {{ cost - discount }} руб
-    </td>
+    <td class="cost-total">= {{ cost - discount }} руб</td>
     <td></td>
   </tr>
 </template>

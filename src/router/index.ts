@@ -12,7 +12,7 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: '/sales',
-    name: 'About',
+    name: 'Sales',
     component: () => import('@/views/Sales.vue')
   },
   {
@@ -24,6 +24,11 @@ const routes: Array<RouteConfig> = [
     path: '/cart',
     name: 'Cart',
     component: () => import('../views/Cart.vue')
+  },
+  {
+    path: '/admin',
+    name: 'Admin',
+    component: () => import('../views/Admin.vue')
   }
 ]
 

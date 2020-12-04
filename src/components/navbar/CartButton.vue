@@ -1,8 +1,10 @@
 <template>
   <nav class="cart cart_align_right">
     <ul class="cart__list">
-      <li class="cart__item">
-        <el-button type="danger" @click="goCart">Корзина {{ cost - discount }} руб</el-button>
+      <li class="cart__item" v-if="cost > 0">
+        <el-button @click="goCart">
+          <i class="el-icon-shopping-cart-full"></i> Корзина {{ cost - discount }} руб
+        </el-button>
       </li>
     </ul>
   </nav>
