@@ -14,12 +14,15 @@ export default {
     Products
   },
   sockets: {
-    connect: function () {
-      console.log('socket connected 1')
+    connect () {
+      console.log('socket connected')
     },
-    echoTest: function (data) {
-      console.log('echo: ', data)
+    echo (data) {
+      console.log('echo', data)
     }
+  },
+  mounted () {
+    this.$socket.emit('test', 'Ololo')
   }
 }
 </script>
