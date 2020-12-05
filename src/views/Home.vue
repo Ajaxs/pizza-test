@@ -14,10 +14,10 @@ export default {
     Products
   },
   sockets: {
-    connect: function () {
+    connect () {
       console.log('socket connected')
     },
-    echo: function (data) {
+    echo (data) {
       console.log('echo', data)
     }
   },

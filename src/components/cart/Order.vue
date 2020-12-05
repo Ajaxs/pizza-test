@@ -8,15 +8,28 @@
       :visible.sync="modal"
       @closed="closeModal">
 
-      <el-form ref="order" :rules="rules" :model="user" label-width="120px">
+      <el-form ref="order" :rules="rules" :model="order" label-width="130px">
         <el-form-item label="Ваше имя" prop="name">
-          <el-input v-model="user.name"></el-input>
+          <el-input v-model="order.name" placeholder="Имя"></el-input>
         </el-form-item>
         <el-form-item label="Телефон" prop="phone">
-          <el-input v-model="user.phone"></el-input>
+          <el-input v-model="order.phone" placeholder="(xxx) xxx xx xx">
+            <template slot="prepend">+7</template>
+          </el-input>
         </el-form-item>
         <el-form-item label="Адрес" prop="adress">
-          <el-input v-model="user.adress"></el-input>
+          <el-input v-model="order.adress" placeholder="Имя"></el-input>
+        </el-form-item>
+        <el-form-item label="Время доставки">
+          <el-time-select
+            placeholder="Укажите время"
+            v-model="order.time"
+            :picker-options="{
+              start: '10:00',
+              step: '00:15',
+              end: '20:00'
+            }">
+          </el-time-select>
         </el-form-item>
       </el-form>
 
@@ -37,10 +50,13 @@ export default Vue.extend({
   data () {
     return {
       modal: false,
-      user: {
+      order: {
+        id: '',
         name: '',
         phone: '',
-        adress: ''
+        adress: '',
+        time: '',
+        cart: []
       },
       rules: {
         name: [
@@ -72,10 +88,14 @@ export default Vue.extend({
             console.log(err)
           } */
 
+          this.order.id = (Date.now()).toString(16)
+          this.order.cart = this.cartItems
+
           this.$socket.emit('orderUser', {
-            user: this.user,
-            cart: this.cartItems
+            order: this.order
           })
+
+          this.$refs.order.resetFields()
         } else {
           console.log('error submit!!')
         }
