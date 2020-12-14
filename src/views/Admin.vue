@@ -45,7 +45,7 @@
           </div>
         </div>
       </div>
-      <p>Text</p>
+      <p>Text Comment</p>
     </div>
   </div>
 </template>
