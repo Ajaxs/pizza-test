@@ -1,6 +1,7 @@
 <template>
   <div class="main-column">
     <header class="header"></header>
+    <p>Главная страница</p>
     <Products />
   </div>
 </template>
