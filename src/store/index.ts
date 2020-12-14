@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex, { StoreOptions } from 'vuex'
 import axios from '@/config/axios'
-import { RootState } from '@/types/types'
+import { RootState, IPizza } from '@/types/types'
 import { cart } from './modules/cart'
 import { pizzas } from './modules/pizzas'
 
@@ -13,7 +13,7 @@ const state = {
 
 // mutations
 const mutations = {
-  init (state, payload) {
+  init (state: any, payload: IPizza[]) {
     state.pizzas = payload.pizzas
   }
 }

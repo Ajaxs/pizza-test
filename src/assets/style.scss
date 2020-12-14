@@ -320,6 +320,12 @@ body {
   }
 }
 
+.page {
+  h1 {
+    margin-bottom: 40px;
+  }
+}
+
 .page__sales {
   ul {
     list-style: none;
@@ -334,10 +340,6 @@ body {
 
 .page__cart {
   padding-bottom: 50px;
-
-  h1 {
-    margin-bottom: 40px;
-  }
 
   .table-cart {
     width: 100%;
@@ -420,6 +422,44 @@ body {
   }
 
   .no-items {
+  }
+}
+
+.order {
+  border-bottom: 1px solid #ccc;
+  &__user,
+  &__header {
+    display: grid;
+    grid-template-columns: 120px 160px 120px 350px 140px auto;
+    align-items: center;
+    padding: 10px 0;
+  }
+
+  &__header {
+    border-bottom: 1px solid #ccc;
+    font-weight: 600;
+  }
+
+  &__buttons {
+    text-align: right;
+  }
+}
+
+.product-list {
+  padding-top: 15px;
+  &__title {
+    margin-bottom: 15px;
+  }
+  &__table {
+    width: 100%;
+
+    td {
+      padding: 5px;
+    }
+  }
+
+  &__image {
+    width: 50px;
   }
 }
 

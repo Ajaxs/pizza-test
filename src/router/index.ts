@@ -29,6 +29,11 @@ const routes: Array<RouteConfig> = [
     path: '/admin',
     name: 'Admin',
     component: () => import('../views/Admin.vue')
+  },
+  {
+    path: '/tracking/:id',
+    name: 'Tracking',
+    component: () => import('../views/Tracking.vue')
   }
 ]
 

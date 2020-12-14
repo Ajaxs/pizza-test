@@ -11,8 +11,9 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import Vue from 'vue'
+import { meta } from '@/mixins/meta'
 
 export default Vue.extend({
   name: 'Sales',

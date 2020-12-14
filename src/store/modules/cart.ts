@@ -1,7 +1,7 @@
 import { Module, ActionTree, MutationTree, GetterTree } from 'vuex'
 import { RootState, CartState, ICartItem, IPizzasSize, IPizzasToping } from '@/types/types'
 
-const updateCart = (items) => {
+const updateCart = (items: ICartItem[]) => {
   localStorage.setItem('cart', JSON.stringify(items))
 }
 
@@ -71,7 +71,7 @@ const getters: GetterTree<CartState, RootState> = {
   itemsByType: (state: CartState) => (type: string) => {
     return state.items.filter(value => value.type === type)
   },
-  cost: (state: CartState, _, rootState) => {
+  cost: (state: CartState, _, rootState: RootState) => {
     const pizzasSizes = rootState.pizzas.sizes
     const pizzasTopings = rootState.pizzas.topings
     const cartItems = state.items
