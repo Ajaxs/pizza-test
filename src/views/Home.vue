@@ -1,7 +1,7 @@
 <template>
   <div class="main-column">
     <header class="header"></header>
-    <p>Главная страница</p>
+    <p>Главная страница 222</p>
     <p>Вся продукция</p>
     <Products />
   </div>
