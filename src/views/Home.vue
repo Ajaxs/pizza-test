@@ -2,7 +2,6 @@
   <div class="main-column">
     <header class="header"></header>
     <p>Главная страница</p>
-    <p>Вся продукция</p>
     <Products />
   </div>
 </template>
