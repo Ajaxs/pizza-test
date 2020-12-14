@@ -5,24 +5,15 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import Products from '@/components/products/Products.vue'
+import { meta } from '@/mixins/meta'
 
 export default {
   name: 'Home',
+  mixins: [meta],
   components: {
     Products
-  },
-  sockets: {
-    connect () {
-      console.log('socket connected')
-    },
-    echo (data) {
-      console.log('echo', data)
-    }
-  },
-  mounted () {
-    this.$socket.emit('test', 'Ololo')
   }
 }
 </script>

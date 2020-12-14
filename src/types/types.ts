@@ -42,11 +42,11 @@ export interface IPizzasDough {
 }
 
 export interface IPizza {
-  items: Partial<Array<IPizzasItem>>,
-  sizes: Partial<Array<IPizzasSize>>,
-  variants: Partial<Array<IPizzasVariant>>,
-  topings: Partial<Array<IPizzasToping>>,
-  doughs: Partial<Array<IPizzasDough>>
+  items: Partial<IPizzasItem[]>,
+  sizes: Partial<IPizzasSize[]>,
+  variants: Partial<IPizzasVariant[]>,
+  topings: Partial<IPizzasToping[]>,
+  doughs: Partial<IPizzasDough[]>
 }
 
 /* Drinks */

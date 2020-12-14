@@ -32,28 +32,36 @@ const getters: GetterTree<IPizza, RootState> = {
   doughs: (state: IPizza) => {
     return state.doughs
   },
-  itemById: (state: IPizza) => (id: number): IPizzasItem | null => {
-    return state.items.find((value: IPizzasItem) => value.id === id)
+  itemById: (state: IPizza) => (id: number): IPizzasItem | undefined => {
+    return state.items.find((value: IPizzasItem): boolean => value.id === id)
   },
-  sizesByProductId: (state: IPizza) => (pizzaId: number): Array<IPizzasSize> => {
-    return state.sizes.filter((value: IPizzasSize) => {
+  sizesByProductId: (state: IPizza) => (pizzaId: number): IPizzasSize[] => {
+    return state.sizes.filter((value: IPizzasSize): boolean => {
       return value.pizza_id === pizzaId
     })
   },
-  sizeById: (state: IPizza) => (sizeId: number): IPizzasSize => {
-    return state.sizes.find((value: IPizzasSize) => {
+  sizeById: (state: IPizza) => (sizeId: number): IPizzasSize | undefined => {
+    return state.sizes.find((value: IPizzasSize): boolean => {
       return value.id === sizeId
     })
   },
-  varintBySizeAndDough: (state: IPizza) => (sizeId: number, dough: string): IPizzasVariant => {
-    return state.variants.find((value: IPizzasVariant) => {
-      return value.size_id === sizeId && value.dough === dough
-    })
+  varintBySizeAndDough: (state: IPizza) => (sizeId: number, dough: string): IPizzasVariant | null => {
+    if (state.variants.length > 0) {
+      return state.variants.find((value: IPizzasVariant): boolean => {
+        return value.size_id === sizeId && value.dough === dough
+      })
+    }
+
+    return null
   },
-  topingsById: (state: IPizza) => (topings: number[]): Array<IPizzasToping> => {
-    return state.topings.filter((value: IPizzasToping) => {
-      return topings.includes(value.id)
-    })
+  topingsById: (state: IPizza) => (topings: number[]): IPizzasToping[] => {
+    if (state.topings.length > 0) {
+      return state.topings.filter((value: IPizzasToping): boolean => {
+        return topings.includes(value.id)
+      })
+    }
+
+    return []
   }
 }
 

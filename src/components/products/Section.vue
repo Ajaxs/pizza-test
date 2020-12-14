@@ -12,7 +12,7 @@
   </section>
 </template>
 
-<script lang="ts">
+<script>
 import Item from './Item.vue'
 
 export default {

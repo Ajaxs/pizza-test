@@ -1,70 +1,58 @@
 <template>
-  <div>
-    <div v-if="items.length > 0">
-      <table class="table-cart">
-        <tbody>
-          <tr v-for="item in items" :key="item.id">
-            <td class="cart-image">
-              <img :src="item.image" :alt="item.title"/>
-            </td>
-            <td class="cart-title">
-              <strong>{{ item.title }}</strong>
-              <div v-if="item.properties.length">+ {{ item.properties.join(', ') }}</div>
-            </td>
-            <td class="cart-size">Диаметр: {{ item.size }} см</td>
-            <td class="cart-amount">
-              <amount :id="item.id" :amount="item.amount" />
-            </td>
-            <td class="cart-price">{{ item.cost }} руб</td>
-            <td class="cart-delete">
-              <div @click="removeItem(item.id)">
-                <i class="el-icon-delete"></i>
-              </div>
-            </td>
-          </tr>
-          <total />
-        </tbody>
-      </table>
-      <order />
-    </div>
-    <div class="no-items" v-else>
-      Нет товаров в корзине
-    </div>
-  </div>
+  <tbody>
+    <tr v-for="item in items" :key="item.id">
+      <td class="cart-image">
+        <img :src="item.image" :alt="item.title"/>
+      </td>
+      <td class="cart-title">
+        <strong>{{ item.title }}</strong>
+        <div v-if="item.properties.length">+ {{ item.properties.join(', ') }}</div>
+      </td>
+      <td class="cart-size">
+        Диаметр: {{ item.size }} см<br>
+        {{ item.dough }}
+      </td>
+      <td class="cart-amount">
+        <amount :id="item.id" :amount="item.amount" />
+      </td>
+      <td class="cart-price">{{ item.cost }} руб</td>
+      <td class="cart-delete">
+        <div @click="removeItem(item.id)">
+          <i class="el-icon-delete"></i>
+        </div>
+      </td>
+    </tr>
+  </tbody>
 </template>
 
 <script>
 import Vue from 'vue'
-import { mapGetters } from 'vuex'
 import Amount from '@/components/cart/Amount.vue'
-import Total from '@/components/cart/Total.vue'
-import Order from '@/components/cart/Order.vue'
+import { getPizzas } from '@/mixins/getPizzas'
 
 export default Vue.extend({
   name: 'CartTable',
+  props: {
+    cart: Array
+  },
+  mixins: [getPizzas],
   methods: {
     removeItem (id) {
       this.$store.dispatch('cart/removeItem', id)
     }
   },
   computed: {
-    ...mapGetters({
-      pizzasItems: 'pizzas/items',
-      pizzasSizes: 'pizzas/sizes',
-      pizzasVariants: 'pizzas/variants',
-      pizzasTopings: 'pizzas/topings',
-      cartItems: 'cart/items'
-    }),
     items () {
       const itemsArray = []
 
       if (this.pizzasItems.length > 0 && this.pizzasSizes.length > 0 && this.pizzasVariants.length > 0) {
-        this.cartItems.forEach(element => {
+        this.cart.forEach(element => {
           /* Build array to pizzas */
           if (element.type === 'pizzas') {
             const item = this.pizzasItems.find(value => value.id === element.productId)
             const size = this.pizzasSizes.find(value => value.id === element.sizeId)
             const type = this.pizzasVariants.find(value => value.size_id === size.id && value.dough === element.dough)
+            const dough = this.pizzasDoughs.find(value => value.dough === type.dough)
 
             /* Add cost topings */
             let topingsCost = 0
@@ -83,6 +71,7 @@ export default Vue.extend({
               image: type.image,
               title: item.title,
               size: size.diametr,
+              dough: dough.title,
               amount: element.amount,
               cost: cost,
               properties: topingsTitle
@@ -95,9 +84,7 @@ export default Vue.extend({
     }
   },
   components: {
-    Amount,
-    Total,
-    Order
+    Amount
   }
 })
 </script>

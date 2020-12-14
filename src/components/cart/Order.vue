@@ -51,7 +51,7 @@ export default Vue.extend({
     return {
       modal: false,
       order: {
-        id: '',
+        id: null,
         name: '',
         phone: '',
         adress: '',
@@ -95,7 +95,11 @@ export default Vue.extend({
             order: this.order
           })
 
+          window.open(`/tracking/${this.order.id}`, '_blank')
+
           this.$refs.order.resetFields()
+          this.order.id = null
+          this.order.cart = []
         } else {
           console.log('error submit!!')
         }
