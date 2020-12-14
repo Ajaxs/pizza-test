@@ -26,7 +26,8 @@ export default Vue.extend({
     return {
       links: [
         { url: '/', title: 'Главная' },
-        { url: '/sales', title: 'Скидки' }
+        { url: '/sales', title: 'Скидки' },
+        { url: '/about', title: 'О компании' }
       ]
     }
   },
