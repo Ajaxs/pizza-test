@@ -1,8 +1,8 @@
 <template>
   <div class="main-column">
     <header class="header"></header>
-    <p>Главная страница 222</p>
-    <p>Вся продукция</p>
+    <p>Главная страница с заголовком</p>
+    <p>Описание страницы</p>
     <Products />
   </div>
 </template>
