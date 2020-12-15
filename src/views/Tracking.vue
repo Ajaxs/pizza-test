@@ -8,6 +8,7 @@
         <el-step title="Доставка курьером" description="Курьер уже выехал к вам"></el-step>
         <el-step title="Заказ завершен" description="Спасибо что выбрали нас"></el-step>
       </el-steps>
+      <p>Спасибо, мы вам перезвоним</p>
     </div>
   </div>
 </template>
