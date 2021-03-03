@@ -19,6 +19,7 @@ import { meta } from '@/mixins/meta'
 
 export default Vue.extend({
   name: 'Tracking',
+  mixins: [meta],
   data () {
     return {
       status: 1
